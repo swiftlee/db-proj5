@@ -1,0 +1,37 @@
+.primary {
+    color: #72b9ff;
+}
+
+.primary-bg {
+    background-color: #72b9ff;
+}
+
+.title {
+    color: rgb(255, 255, 255);
+}
+
+.section-bg {
+    background-color: #dddddd;
+}
+
+.foot1 {
+    background-color: #dddddd;
+}
+
+.foot2 {
+    background-color: #868686;
+}
+
+.home {
+    height: 2.5em;
+    width: 2.5em;
+    position: absolute;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 20px;
+    transform: translateX(-60px);
+}
+
+.home:hover {
+    filter: drop-shadow(2.5px 2.5px 2.5px rgba(97, 97, 97, 0.473));
+}

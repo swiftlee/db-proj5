@@ -1,0 +1,47 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "An app to help serve doctors and patients with information.",
+  "main": "dist/server.js",
+  "contributors": [
+    {
+      "name": "Jonathan Conlin",
+      "email": "jconlin@ufl.edu",
+      "url": "https://jonconlin.codes"
+    }
+  ],
+  "scripts": {
+    "start": "concurrently \"tsc -w\" \"nodemon dist/server.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swiftlee/db-proj5"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.2",
+    "@types/is-empty": "^1.2.0",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/morgan": "^1.7.37",
+    "@types/node": "^12.12.7",
+    "@types/passport-jwt": "^3.0.3",
+    "@types/sqlite3": "^3.1.5",
+    "concurrently": "^4.1.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  },
+  "homepage": ""
+}
