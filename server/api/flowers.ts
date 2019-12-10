@@ -28,8 +28,9 @@ flowersRouter.get('/', (req: Request, res: Response) => {
 flowersRouter.get('/:flower', (req: Request, res: Response) => {
     db.serialize(() => {
         new Promise((resolve, reject) => {
-            const sql = 'SELECT * FROM SIGHTINGS WHERE NAME = ? ORDER BY SIGHTED DESC LIMIT 10;';
-            const params = req.query.flower;
+            const sql = 'SELECT * FROM SIGHTINGS WHERE NAME=? ORDER BY SIGHTED DESC LIMIT 10;';
+            console.log('param', req.params.flower);
+            const params = req.params.flower;
             db.all(sql, params, (err: any, rows: any) => {
                 if (err) {
                     console.log('Error when trying to fetch flower data!');
