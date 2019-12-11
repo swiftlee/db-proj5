@@ -27,13 +27,23 @@ const FlowerGrid = (props) => {
     };
 
     return (
-        <Container className='grid flower-card'>
+        <Container className='grid flower-container'>
             {
-                flowers.map((img, index) => {
-                    return <Flower name={img.COMNAME} src={props.imgs[index]} click={handleShow}/>;
+                flowers.filter(img => {
+                    if (props.filter.trim() !== '') {
+                        const regexp = new RegExp(props.filter.trim().toLowerCase().replace(/\\/g, '&#92;'), 'gi');
+                        if (img.COMNAME) {
+                            const result = img.COMNAME.trim().toLowerCase().match(regexp);
+                            return result && result.length > 0;
+                        }
+                        return false;
+                    } else
+                        return true;
+                }).map((img, index) => {
+                    return <Flower name={img.COMNAME} src={props.imgs[flowers.indexOf(img)]} click={handleShow}/>;
                 })
             }
-        <SightingsModal show={show} flowers={selection} handleClose={handleClose} name={selected}/>
+            <SightingsModal show={show} flowers={selection} handleClose={handleClose} name={selected}/>
         </Container>
     )
 };
@@ -42,7 +52,8 @@ const Flower = (props) => {
     return (
         <div style={{padding: '20px'}}>
             <h5>{props.name}</h5>
-            <Image onClick={() => props.click(props.name)} className='flower-card' src={props.src} rounded style={{cursor: 'pointer', width: '200px', height: '200px'}}/>
+            <Image onClick={() => props.click(props.name)} className='flower-card' src={props.src} rounded
+                   style={{cursor: 'pointer', width: '200px', height: '200px'}}/>
         </div>
     );
 };
