@@ -1,6 +1,7 @@
 import {Request, Response, Router} from 'express';
 import {db} from '../config/express';
 import validateFlowerUpdate from '../validation/validateFlowerUpdate';
+import validateSightingInsert from '../validation/validateSightingInsert'
 
 const flowersRouter = Router();
 
@@ -80,6 +81,53 @@ flowersRouter.post('/update', (req: Request, res: Response) => {
         });
     });
 
+});
+
+
+flowersRouter.post('/insert', (req: Request, res: Response) => {
+    const {valid, errors} = validateSightingInsert(req.body);
+    // console.log(req.body)
+
+    if (!valid) {
+        return res.status(400).json(errors);
+    }
+
+
+
+
+    const {entry} = req.body;
+    // console.log(...entry.split(',').map((str: string) => str.trim()));
+    // const sql = `INSERT INTO SIGHTINGS VALUES(
+    //              NAME=?,
+    //              PERSON=?,
+    //              LOCATION=?,
+    //              SIGHTED=DATE(?);)`;
+    const sql = `INSERT INTO SIGHTINGS VALUES ("daddydaddad", "dad", "Grouse Meadow", "2014-08-16");`
+    const params = [...entry.split(',').map((str: string) => str.trim())];
+    console.log('---------------------')
+    console.log(params)
+    console.log('---------------------')
+
+    db.serialize(() => {
+        db.run(sql, (err: Error) => {
+            if(err){
+                console.error(err);
+                return res.status(400).json({success: false});
+            } else {
+                return res.status(200).json({success: true});
+            }
+        });
+    });
+    // db.serialize(() => {
+    //     db.run(sql, params, (err: Error) => {
+    //         if (err) {
+    //             console.error(err);
+    //             return res.status(400).json({success: false});
+    //         } else {
+    //             return res.status(200).json({success: true});
+    //         }
+    //     });
+    // });
 });
 
 export default flowersRouter;
