@@ -95,21 +95,44 @@ flowersRouter.post('/insert', (req: Request, res: Response) => {
 
 
 
-    const {entry} = req.body;
+    const {name, person, location, date} = req.body;
+    console.log('---------------------')
+    console.log(name)
+    console.log('---------------------')
+    console.log('---------------------')
+    console.log(person)
+    console.log('---------------------')
+    console.log('---------------------')
+    console.log(location)
+    console.log('---------------------')
+    console.log('---------------------')
+    console.log(date)
+    console.log('---------------------')
     // console.log(...entry.split(',').map((str: string) => str.trim()));
     // const sql = `INSERT INTO SIGHTINGS VALUES(
     //              NAME=?,
     //              PERSON=?,
     //              LOCATION=?,
     //              SIGHTED=DATE(?);)`;
-    const sql = `INSERT INTO SIGHTINGS VALUES ("daddydaddad", "dad", "Grouse Meadow", "2014-08-16");`
-    const params = [...entry.split(',').map((str: string) => str.trim())];
-    console.log('---------------------')
-    console.log(params)
-    console.log('---------------------')
+    // INSERT INTO langs(name) VALUES(?)`, ['C'], function(err)
+
+    let info = [name, person, location, date];
+    let placeholders = info.map((i) => '(?)').join(',');
+ 
+// construct the insert statement with multiple placeholders
+// based on the number of rows
+    // let placeholders = languages.map((language) => '(?)').join(',');
+// let sql = 'INSERT INTO langs(name) VALUES ' + placeholders;
+
+
+    const sql = `INSERT INTO SIGHTINGS(name, person, location, sighted) VALUES(?, ?, ?, ?)`;
+    // const params = [...entry.split(',').map((str: string) => str.trim())];
+    // console.log('---------------------')
+    // console.log(params)
+    // console.log('---------------------')
 
     db.serialize(() => {
-        db.run(sql, (err: Error) => {
+        db.run(sql, info, (err: Error) => {
             if(err){
                 console.error(err);
                 return res.status(400).json({success: false});

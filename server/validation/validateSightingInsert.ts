@@ -1,12 +1,13 @@
 import isEmpty from 'is-empty';
 
 const validateSightingInsert = (data: any) => {
+    console.log(data)
     const errors: any = {};
-    data.entry = !isEmpty(data.entry) ? data.entry : '';
+    data.name = !isEmpty(data.name) ? data.name : '';
     // data.column = !isEmpty(data.column) ? data.column : '';
 
-    if (isEmpty(data.entry)) {
-        errors.entry = 'Cannot have an empty comname.';
+    if (isEmpty(data.name)) {
+        errors.name = 'Cannot have an empty comname.';
     }
 
     // if (!(['NAME', 'PERSON', 'LOCATION', 'SIGHTED'].includes(data.column.toUpperCase()))) {
