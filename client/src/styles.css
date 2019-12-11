@@ -1,37 +1,89 @@
-.primary {
-    color: #72b9ff;
+:root {
+    --primary: #17223B;
+    --secondary: #263859;
+    --accent: #6B778D;
+    --highlight: #FF6768;
+    --primary-text: #ddd;
+    --secondary-text: #aaa;
+    --shadow-color: rgba(0, 0, 0, .25);
 }
 
-.primary-bg {
-    background-color: #72b9ff;
+body {
+    background-color: var(--primary);
 }
 
-.title {
-    color: rgb(255, 255, 255);
+.grid {
+    color: var(--secondary-text);
+    background-color: var(--secondary);
+    text-align: center;
+    max-width: 75vw;
+    margin: 30px auto;
+    padding: 0 20px;
+    width: 100%;
+    display: grid;
+    /* Define Auto Row size */
+    grid-auto-rows: 300px;
+    /*Define our columns */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1em;
 }
 
-.section-bg {
-    background-color: #dddddd;
+.flower-card {
+    -webkit-box-shadow: 0 10px 6px -6px var(--shadow-color);
+    -moz-box-shadow: 0 10px 6px -6px var(--shadow-color);
+    box-shadow: 0 10px 6px -6px var(--shadow-color);
 }
 
-.foot1 {
-    background-color: #dddddd;
+.modal-title {
+    color: var(--primary-text);
 }
 
-.foot2 {
-    background-color: #868686;
+.close {
+    color: var(--primary-text);
+    text-shadow: 0 1px 0 var(--primary-text);
 }
 
-.home {
-    height: 2.5em;
-    width: 2.5em;
-    position: absolute;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 20px;
-    transform: translateX(-60px);
+.close:hover {
+    color: var(--highlight);
 }
 
-.home:hover {
-    filter: drop-shadow(2.5px 2.5px 2.5px rgba(97, 97, 97, 0.473));
+.modal-header {
+    border-bottom: 1px solid var(--accent);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--accent);
+}
+
+.modal-content {
+    background-color: var(--secondary);
+}
+
+.modal-content table {
+    box-shadow: 0 0 10px 2px var(--shadow-color);
+    border-radius: 100% / 10%;
+    top: 0;
+    bottom: 0;
+    left: 2%;
+    right: 2%;
+}
+
+.table-head tr td {
+    padding: 10px 20px 20px;
+    background-color: var(--primary);
+    color: var(--primary-text);
+    text-decoration: underline var(--highlight);
+}
+
+.table-body tr td {
+    padding: 10px 20px 20px;
+    color: var(--primary-text);
+}
+
+.table-body tr:nth-child(odd) {
+    background-color: var(--accent);
+}
+
+.table-body tr:nth-child(even) {
+    background-color: var(--primary);
 }
