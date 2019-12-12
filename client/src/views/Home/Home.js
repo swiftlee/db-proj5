@@ -10,15 +10,24 @@ import axios from 'axios';
 const Home = (props) => {
 
     const [input, setInput] = useState('');
-
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const [flower, setFlower] = useState('');
     const [member, setMember] = useState('');
     const [location, setLocation] = useState('');
     const [date, setDate] = useState('');
+    const resetModalValues = () => {
+        setFlower('');
+        setMember('');
+        setLocation('');
+        setDate('');
+    }
+    const handleClose = () => {
+        resetModalValues();
+        setShow(false)
+    };
+    const handleShow = () => setShow(true);
+    
+
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(flower + ' ' + member + ' ' + location + ' ' + date);
@@ -27,7 +36,7 @@ const Home = (props) => {
           if(res.status == 200){
             alert("New Sighting Created :)");
           }
-          setShow(false)
+          handleClose();
         })
     }
     
