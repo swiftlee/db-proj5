@@ -12,14 +12,13 @@ const Home = (props) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow2 = () => {
-        setShow(true);
-    };
+    const handleShow = () => setShow(true);
+    
 
     return (
         <div>
             <h2 className='header-text'>Select a flower!</h2>
-            <Button variant="primary" onClick={handleShow2}>Hello!</Button>
+            <Button variant="primary" onClick={handleShow}>Hello!</Button>
             <NewSightingsModal show={show} handleClose={handleClose}/>
             <ImageFilter input={input} setInput={setInput}/>
             <FlowerGrid filter={input} imgs={imgs}/>
