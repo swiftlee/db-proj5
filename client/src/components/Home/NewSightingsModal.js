@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form"
+import axios from 'axios';
 
 const NewSightingsModal = (props) => {
   const [flower, setFlower] = useState('');
@@ -9,15 +10,44 @@ const NewSightingsModal = (props) => {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
 
-  const printValues = () => {
-    console.log(flower + ' ' + member + ' ' + location + ' ' + date);
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    // var formData = new FormData();
+    // formData.append('name', flower);
+    // formData.append('person', member);
+    // formData.append('location', location);
+    // formData.append('sighted', date);
     console.log(flower + ' ' + member + ' ' + location + ' ' + date);
-    // axios.get(`/api/flowers/${name.replace(' ', '%20')}`).then((res) => {
-    //     setSelection(res.data);
+    // axios({
+    //   method: 'post',
+    //   url: '/api/flowers/insert',
+    //   data: {
+    //     name: flower,
+    //     person: member,
+    //     location: location,
+    //     date: date
+    //   },
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    //   },
+    // });
+    axios.post('/api/flowers/insert', {flower, member, location, date})
+    .then((res) => {
+      console.log("Heres the response: " + res.status);
+    }).catch((err) => {
+      console.log("Oops something not right boi\n");
+      console.log(err);
+    })
+   
+    // axios.post('/user', {
+    //   firstName: 'Fred',
+    //   lastName: 'Flintstone'
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
     // });
 }
   return (

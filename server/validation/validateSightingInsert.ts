@@ -3,14 +3,19 @@ import isEmpty from 'is-empty';
 const validateSightingInsert = (data: any) => {
     console.log(data)
     const errors: any = {};
-    data.name = !isEmpty(data.name) ? data.name : '';
-    data.person = !isEmpty(data.person) ? data.person : '';
+    data.flower = !isEmpty(data.flower) ? data.flower : '';
+    data.member = !isEmpty(data.member) ? data.member : '';
     data.location = !isEmpty(data.location) ? data.location : '';
     data.date = !isEmpty(data.date) ? data.date : '';
-    // data.column = !isEmpty(data.column) ? data.column : '';
 
-    if (isEmpty(data.name) || isEmpty(data.person) || isEmpty(data.location) || isEmpty(data.date)) {
+    // console.log(data.flower);
+    // console.log(data.member);
+    // console.log(data.location);
+    // console.log(data.date);
+
+    if (isEmpty(data.flower) || isEmpty(data.member) || isEmpty(data.location) || isEmpty(data.date)) {
         errors.name = 'Cannot have an empty comname.';
+        console.log('something was empty...')
     }
 
     // if (!(['NAME', 'PERSON', 'LOCATION', 'SIGHTED'].includes(data.column.toUpperCase()))) {
