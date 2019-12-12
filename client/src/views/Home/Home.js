@@ -43,8 +43,11 @@ const Home = (props) => {
 
     return (
         <div>
-            <h2 className='header-text'>Select a flower!</h2>
-            <Button variant="secondary" onClick={handleShow}>Hello!</Button>
+            <div className='header-text'>
+                <h2>Select a flower!</h2>
+                <Button className="sightings-button" variant="secondary" onClick={handleShow}>Add New Sighting!</Button>
+            </div>
+            
             <NewSightingsModal 
                 show={show} 
                 handleClose={handleClose} 
