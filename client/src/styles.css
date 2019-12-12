@@ -100,3 +100,8 @@ body {
 .table-body tr:nth-child(even) {
     background-color: var(--primary);
 }
+
+
+.form-label {
+    color: var(--primary-text);
+}
