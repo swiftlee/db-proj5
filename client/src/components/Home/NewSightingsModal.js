@@ -13,9 +13,9 @@ const NewSightingsModal = (props) => {
     console.log(flower + ' ' + member + ' ' + location + ' ' + date);
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     console.log(flower + ' ' + member + ' ' + location + ' ' + date);
-    // console.log(flower + ' ' + member + ' ' + location + ' ' + date);
     // axios.get(`/api/flowers/${name.replace(' ', '%20')}`).then((res) => {
     //     setSelection(res.data);
     // });
@@ -56,7 +56,7 @@ const NewSightingsModal = (props) => {
                     <Button variant="secondary" onClick={props.handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={() => handleSubmit()}>
+                    <Button variant="primary" type="submit">
                         Save Changes
                     </Button>
                   </Modal.Footer>
