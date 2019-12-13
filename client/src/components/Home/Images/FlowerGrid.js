@@ -9,6 +9,8 @@ const FlowerGrid = (props) => {
     const [flowers, setFlowers] = useState([]);
     const [selection, setSelection] = useState([]);
     const [selected, setSelected] = useState('');
+    const [genus, setGenus] = useState('');
+    const [species, setSpecies] = useState('')
 
     useEffect(() => {
         axios.get('/api/flowers/').then((res) => {
@@ -21,10 +23,26 @@ const FlowerGrid = (props) => {
     const handleShow = name => {
         axios.get(`/api/flowers/${name.replace(' ', '%20')}`).then((res) => {
             setSelection(res.data);
+            setGenus(res.data[0].GENUS);
+            setSpecies(res.data[0].SPECIES);
         });
         setShow(true);
         setSelected(name);
     };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(genus);
+        console.log(species);
+        console.log(selected);
+        axios.post('/api/flowers/update', {genus, species, selected})
+        .then((res) => {
+            if(res.status === 200){
+                console.log("flower created");
+            }
+        })
+        handleClose();
+    }
 
     return (
         <Container className='grid flower-container'>
@@ -43,7 +61,12 @@ const FlowerGrid = (props) => {
                     return <Flower name={img.COMNAME} src={props.imgs[flowers.indexOf(img)]} click={handleShow}/>;
                 })
             }
-            <SightingsModal show={show} flowers={selection} handleClose={handleClose} name={selected}/>
+            <SightingsModal show={show} flowers={selection} 
+                            handleClose={handleClose} name={selected}
+                            genus={genus} setGenus={setGenus}
+                            species={species} setSpecies={setSpecies}
+                            handleSubmit={handleSubmit}
+                            />
         </Container>
     )
 };

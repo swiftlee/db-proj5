@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const SightingsModal = (props) => {
 
@@ -30,13 +31,24 @@ const SightingsModal = (props) => {
                         </tbody>
                     </table>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={props.handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={props.handleClose}>
-                        Save Changes
-                    </Button>
+                <Modal.Footer className="my-modal-footer">
+                    <Form onSubmit={props.handleSubmit}>
+                        <Form.Group controlId="date">
+                            <Form.Label className="form-label">Genus: </Form.Label>
+                            <Form.Control required={true} value={props.genus} onChange={event => props.setGenus(event.target.value)}/>
+                        </Form.Group>
+                        <Form.Group controlId="date">
+                            <Form.Label className="form-label">Species: </Form.Label>
+                            <Form.Control required={true} value={props.species} onChange={event => props.setSpecies(event.target.value)}/>
+                        </Form.Group>
+                        <br/>
+                        <Button variant="secondary" onClick={props.handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" type="submit">
+                            Save Changes
+                        </Button>
+                    </Form>
                 </Modal.Footer>
             </Modal>
         </>

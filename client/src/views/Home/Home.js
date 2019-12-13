@@ -10,11 +10,12 @@ import axios from 'axios';
 const Home = (props) => {
 
     const [input, setInput] = useState('');
-    const [show, setShow] = useState(false);
+    const [showPost, setShowPost] = useState(false);
     const [flower, setFlower] = useState('');
     const [member, setMember] = useState('');
     const [location, setLocation] = useState('');
     const [date, setDate] = useState('');
+
     const resetModalValues = () => {
         setFlower('');
         setMember('');
@@ -23,18 +24,17 @@ const Home = (props) => {
     }
     const handleClose = () => {
         resetModalValues();
-        setShow(false)
+        setShowPost(false)
     };
-    const handleShow = () => setShow(true);
     
 
-    const handleSubmit = (event) => {
+    const handlePost = (event) => {
         event.preventDefault();
         console.log(flower + ' ' + member + ' ' + location + ' ' + date);
         axios.post('/api/flowers/insert', {flower, member, location, date})
         .then((res) => {
-          if(res.status == 200){
-            alert("New Sighting Created :)");
+          if(res.status === 200){
+            alert("New Sighting Created!");
           }
           handleClose();
         })
@@ -45,13 +45,13 @@ const Home = (props) => {
         <div>
             <div className='header-text'>
                 <h2>Select a flower!</h2>
-                <Button className="sightings-button" variant="secondary" onClick={handleShow}>Add New Sighting!</Button>
+                <Button className="sightings-button" variant="secondary" onClick={() => setShowPost(true)}>Add New Sighting!</Button>
             </div>
             
             <NewSightingsModal 
-                show={show} 
+                show={showPost} 
                 handleClose={handleClose} 
-                handleSubmit={handleSubmit}
+                handleSubmit={handlePost}
                 flower={flower} setFlower={setFlower}
                 member={member} setMember={setMember}
                 location={location} setLocation={setLocation}
