@@ -10,11 +10,12 @@ import axios from 'axios';
 const Home = (props) => {
 
     const [input, setInput] = useState('');
-    const [show, setShow] = useState(false);
+    const [showPost, setShowPost] = useState(false);
     const [flower, setFlower] = useState('');
     const [member, setMember] = useState('');
     const [location, setLocation] = useState('');
     const [date, setDate] = useState('');
+
     const resetModalValues = () => {
         setFlower('');
         setMember('');
@@ -24,33 +25,32 @@ const Home = (props) => {
 
     const handleClose = () => {
         resetModalValues();
-        setShow(false)
+        setShowPost(false)
     };
-
     const handleShow = () => setShow(true);
 
-    const handleSubmit = (event) => {
+    const handlePost = (event) => {
         event.preventDefault();
         console.log(flower + ' ' + member + ' ' + location + ' ' + date);
         axios.post('/api/flowers/insert', {flower, member, location, date})
             .then((res) => {
                 alert("New Sighting Created :)");
                 handleClose();
-            })
     };
+            })
 
 
     return (
         <div>
             <div className='header-text'>
                 <h2>Southern Sierra Wildflower Club (SSWC)</h2>
-                <Button className="sightings-button" variant="secondary" onClick={handleShow}>Add New Sighting!</Button>
+                <Button className="sightings-button" variant="secondary" onClick={() => setShowPost(true)}>Add New Sighting!</Button>
             </div>
-
-            <NewSightingsModal
-                show={show}
-                handleClose={handleClose}
-                handleSubmit={handleSubmit}
+            
+            <NewSightingsModal 
+                show={showPost} 
+                handleClose={handleClose} 
+                handleSubmit={handlePost}
                 flower={flower} setFlower={setFlower}
                 member={member} setMember={setMember}
                 location={location} setLocation={setLocation}
