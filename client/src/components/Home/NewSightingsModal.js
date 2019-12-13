@@ -16,17 +16,17 @@ const NewSightingsModal = (props) => {
 
                     <Form.Group controlId="flower">
                       <Form.Label className="form-label">Flower Sighted: </Form.Label>
-                      <Form.Control type="text" placeholder="Large text" required={true} value={props.flower} onChange={event => props.setFlower(event.target.value)}/>
+                      <Form.Control type="text" placeholder="Flower name" required={true} value={props.flower} onChange={event => props.setFlower(event.target.value)}/>
                     </Form.Group>
                     <br />
                     <Form.Group controlId="person">
                       <Form.Label className="form-label">Member Name: </Form.Label>
-                      <Form.Control type="text" placeholder="Large text" required={true} value={props.member} onChange={event => props.setMember(event.target.value)}/>
+                      <Form.Control type="text" placeholder="Member name" required={true} value={props.member} onChange={event => props.setMember(event.target.value)}/>
                     </Form.Group>
                     <br />
                     <Form.Group controlId="location">
                       <Form.Label className="form-label">Location: </Form.Label>
-                      <Form.Control type="text" placeholder="Large text" required={true} value={props.location} onChange={event => props.setLocation(event.target.value)}/>
+                      <Form.Control type="text" placeholder="Location found" required={true} value={props.location} onChange={event => props.setLocation(event.target.value)}/>
                     </Form.Group>
                     <br />
                     <Form.Group controlId="date">

@@ -113,3 +113,8 @@ body {
 .sightings-button:hover {
     border: 1px solid var(--accent);
 }
+
+
+.my-modal-footer {
+    justify-content: space-around !important;
+}

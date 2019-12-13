@@ -26,10 +26,11 @@ flowersRouter.get('/', (req: Request, res: Response) => {
     });
 });
 
+
 flowersRouter.get('/:flower', (req: Request, res: Response) => {
     db.serialize(() => {
         new Promise((resolve, reject) => {
-            const sql = 'SELECT * FROM SIGHTINGS WHERE NAME=? ORDER BY SIGHTED DESC LIMIT 10;';
+            const sql = 'SELECT * FROM SIGHTINGS INNER JOIN FLOWERS ON FLOWERS.COMNAME=SIGHTINGS.NAME WHERE NAME=? ORDER BY SIGHTED DESC LIMIT 10;';
             console.log('param', req.params.flower);
             const params = req.params.flower;
             db.all(sql, params, (err: any, rows: any) => {
@@ -57,21 +58,17 @@ flowersRouter.post('/update', (req: Request, res: Response) => {
         return res.status(400).json(errors);
     }
 
-    const {column, entry, value} = req.body;
-    console.log(...entry.split(',').map((str: string) => str.trim()));
-    const sql = `UPDATE SIGHTINGS SET ${column.toUpperCase()} = ?
-                 WHERE NAME=?
-                 AND PERSON=?
-                 AND LOCATION=?
-                 AND SIGHTED=DATE(?);`;
-    // SELECT * FROM SIGHTINGS
-    // WHERE NAME='California flannelbush'
-    // AND PERSON='Jennifer'
-    // AND LOCATION='Scodie Mountains'
-    // AND SIGHTED=DATE('2006-06-26')
-    const params = [value, ...entry.split(',').map((str: string) => str.trim())];
+    const {genus, species, selected} = req.body;
+    const info = [genus, species, selected]
+    const sql = `UPDATE FLOWERS 
+                 SET GENUS = ?, SPECIES = ?
+                 WHERE COMNAME=(?);`;
+
+    console.log(genus)
+    console.log(species)
+    console.log(selected)
     db.serialize(() => {
-        db.run(sql, params, (err: Error) => {
+        db.run(sql, info, (err: Error) => {
             if (err) {
                 console.error(err);
                 return res.status(400).json({success: false});
@@ -107,8 +104,7 @@ flowersRouter.post('/insert', (req: Request, res: Response) => {
     //              SIGHTED=DATE(?);)`;
     // INSERT INTO langs(name) VALUES(?)`, ['C'], function(err)
 
-    let info = [flower, member, location, date];
-    let placeholders = info.map((i) => '(?)').join(',');
+    const info = [flower, member, location, date];
  
 // construct the insert statement with multiple placeholders
 // based on the number of rows
