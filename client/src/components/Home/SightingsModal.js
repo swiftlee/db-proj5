@@ -3,20 +3,17 @@ import Modal from 'react-bootstrap/Modal';
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/esm/Image";
 import Form from "react-bootstrap/Form";
+import ModalHeader from 'react-bootstrap/ModalHeader';
 
 const SightingsModal = (props) => {
 
     return (
         <>
             <Modal img={props.img} show={props.show} onHide={props.handleClose} className='modal'>
-                <Modal.Header closeButton>
-                    <div style={{display: 'flex'}}>
-                        <div style={{verticalAlign: 'top', display: 'inline-block', textAlign: 'center'}}>
-                            <Image className='flower-card text-center' src={props.img} roundedCircle
-                                   style={{width: '100px', height: '100px'}}/>
-                            <Modal.Title style={{display: 'block'}}>{props.name}</Modal.Title>
-                        </div>
-                    </div>
+                <Modal.Header style={{display: 'inline-block', textAlign: 'center'}} >
+                        <Image className='flower-card text-center' src={props.img} roundedCircle
+                                style={{width: '100px', height: '100px'}}/>
+                        <Modal.Title style={{display: 'block'}}>{props.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='text-center m-auto'>
                     <table>
