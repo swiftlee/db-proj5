@@ -10,7 +10,7 @@ const SightingsModal = (props) => {
         <>
             <Modal img={props.img} show={props.show} onHide={props.handleClose} className='modal'>
                 <Modal.Header closeButton>
-                    <div style={{marginLeft: '25%'}}>
+                    <div style={{display: 'flex'}}>
                         <div style={{verticalAlign: 'top', display: 'inline-block', textAlign: 'center'}}>
                             <Image className='flower-card text-center' src={props.img} roundedCircle
                                    style={{width: '100px', height: '100px'}}/>

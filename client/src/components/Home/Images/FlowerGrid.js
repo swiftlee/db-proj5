@@ -38,11 +38,11 @@ const FlowerGrid = (props) => {
         console.log(species);
         console.log(selected);
         axios.post('/api/flowers/update', {genus, species, selected})
-        .then((res) => {
-            if(res.status === 200){
-                console.log("flower created");
-            }
-        })
+            .then((res) => {
+                if (res.status === 200) {
+                    console.log("flower created");
+                }
+            })
         handleClose();
     }
 
@@ -63,13 +63,13 @@ const FlowerGrid = (props) => {
                     return <Flower name={img.COMNAME} src={props.imgs[flowers.indexOf(img)]} click={handleShow}/>;
                 })
             }
-            <SightingsModal show={show} flowers={selection} 
+            <SightingsModal show={show} flowers={selection}
                             handleClose={handleClose} name={selected}
                             genus={genus} setGenus={setGenus}
                             species={species} setSpecies={setSpecies}
                             handleSubmit={handleSubmit}
-                            />
-            <SightingsModal show={show} flowers={selection} handleClose={handleClose} name={selected} img={image}/>
+                            img={image}
+            />
         </Container>
     )
 };

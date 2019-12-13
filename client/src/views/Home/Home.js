@@ -27,7 +27,6 @@ const Home = (props) => {
         resetModalValues();
         setShowPost(false)
     };
-    const handleShow = () => setShow(true);
 
     const handlePost = (event) => {
         event.preventDefault();
@@ -36,30 +35,31 @@ const Home = (props) => {
             .then((res) => {
                 alert("New Sighting Created :)");
                 handleClose();
+            });
     };
-            })
 
 
-    return (
-        <div>
-            <div className='header-text'>
-                <h2>Southern Sierra Wildflower Club (SSWC)</h2>
-                <Button className="sightings-button" variant="secondary" onClick={() => setShowPost(true)}>Add New Sighting!</Button>
+        return (
+            <div>
+                <div className='header-text'>
+                    <h2>Southern Sierra Wildflower Club (SSWC)</h2>
+                    <Button className="sightings-button" variant="secondary" onClick={() => setShowPost(true)}>Add New
+                        Sighting!</Button>
+                </div>
+
+                <NewSightingsModal
+                    show={showPost}
+                    handleClose={handleClose}
+                    handleSubmit={handlePost}
+                    flower={flower} setFlower={setFlower}
+                    member={member} setMember={setMember}
+                    location={location} setLocation={setLocation}
+                    date={date} setDate={setDate}
+                />
+                <ImageFilter input={input} setInput={setInput}/>
+                <FlowerGrid filter={input} imgs={imgs}/>
             </div>
-            
-            <NewSightingsModal 
-                show={showPost} 
-                handleClose={handleClose} 
-                handleSubmit={handlePost}
-                flower={flower} setFlower={setFlower}
-                member={member} setMember={setMember}
-                location={location} setLocation={setLocation}
-                date={date} setDate={setDate}
-            />
-            <ImageFilter input={input} setInput={setInput}/>
-            <FlowerGrid filter={input} imgs={imgs}/>
-        </div>
-    )
-};
+        )
+    };
 
-export default Home;
+    export default Home;
