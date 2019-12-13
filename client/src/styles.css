@@ -12,8 +12,13 @@ body {
     background-color: var(--primary);
 }
 
+.header-text {
+    color: var(--primary-text);
+    text-align: center;
+}
+
 .grid {
-    color: var(--secondary-text);
+    color: var(--primary-text);
     background-color: var(--secondary);
     text-align: center;
     max-width: 75vw;
@@ -26,12 +31,20 @@ body {
     /*Define our columns */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1em;
+    border: 1px solid var(--secondary-text);
 }
 
 .flower-card {
     -webkit-box-shadow: 0 10px 6px -6px var(--shadow-color);
     -moz-box-shadow: 0 10px 6px -6px var(--shadow-color);
     box-shadow: 0 10px 6px -6px var(--shadow-color);
+    border: 1px solid transparent;
+    transition: border 0.3s, box-shadow 0.2s;
+}
+
+.flower-card:hover {
+    border: 1px solid var(--highlight);
+    box-shadow: 0px 0px 6px 3px rgba(255, 255, 255, 0.3);
 }
 
 .modal-title {
@@ -86,4 +99,22 @@ body {
 
 .table-body tr:nth-child(even) {
     background-color: var(--primary);
+}
+
+
+.form-label {
+    color: var(--primary-text);
+}
+
+.sightings-button {
+    font-size: 1.2em;
+}
+
+.sightings-button:hover {
+    border: 1px solid var(--accent);
+}
+
+
+.my-modal-footer {
+    justify-content: space-around !important;
 }
