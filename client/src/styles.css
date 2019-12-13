@@ -100,3 +100,16 @@ body {
 .table-body tr:nth-child(even) {
     background-color: var(--primary);
 }
+
+
+.form-label {
+    color: var(--primary-text);
+}
+
+.sightings-button {
+    font-size: 1.2em;
+}
+
+.sightings-button:hover {
+    border: 1px solid var(--accent);
+}

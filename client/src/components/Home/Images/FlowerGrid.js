@@ -9,6 +9,7 @@ const FlowerGrid = (props) => {
     const [flowers, setFlowers] = useState([]);
     const [selection, setSelection] = useState([]);
     const [selected, setSelected] = useState('');
+    const [image, setImage] = useState('');
 
     useEffect(() => {
         axios.get('/api/flowers/').then((res) => {
@@ -18,12 +19,13 @@ const FlowerGrid = (props) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = name => {
+    const handleShow = (name, src) => {
         axios.get(`/api/flowers/${name.replace(' ', '%20')}`).then((res) => {
             setSelection(res.data);
         });
         setShow(true);
         setSelected(name);
+        setImage(src);
     };
 
     return (
@@ -43,7 +45,7 @@ const FlowerGrid = (props) => {
                     return <Flower name={img.COMNAME} src={props.imgs[flowers.indexOf(img)]} click={handleShow}/>;
                 })
             }
-            <SightingsModal show={show} flowers={selection} handleClose={handleClose} name={selected}/>
+            <SightingsModal show={show} flowers={selection} handleClose={handleClose} name={selected} img={image}/>
         </Container>
     )
 };
@@ -52,7 +54,7 @@ const Flower = (props) => {
     return (
         <div style={{padding: '20px'}}>
             <h5>{props.name}</h5>
-            <Image onClick={() => props.click(props.name)} className='flower-card' src={props.src} rounded
+            <Image onClick={() => props.click(props.name, props.src)} className='flower-card' src={props.src} rounded
                    style={{cursor: 'pointer', width: '200px', height: '200px'}}/>
         </div>
     );

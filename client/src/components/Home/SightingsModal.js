@@ -1,14 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/esm/Image";
 
 const SightingsModal = (props) => {
 
     return (
         <>
-            <Modal show={props.show} onHide={props.handleClose} className='modal'>
+            <Modal img={props.img} show={props.show} onHide={props.handleClose} className='modal'>
                 <Modal.Header closeButton>
-                    <Modal.Title>{props.name}</Modal.Title>
+                    <div style={{marginLeft: '25%'}}>
+                        <div style={{verticalAlign: 'top', display: 'inline-block', textAlign: 'center'}}>
+                            <Image className='flower-card text-center' src={props.img} roundedCircle
+                                   style={{width: '100px', height: '100px'}}/>
+                            <Modal.Title style={{display: 'block'}}>{props.name}</Modal.Title>
+                        </div>
+                    </div>
                 </Modal.Header>
                 <Modal.Body className='text-center m-auto'>
                     <table>
